@@ -1,0 +1,15 @@
+development: &default
+  adapter: mysql2
+  encoding: utf8
+  database: jasonl_biz_development
+  host: localhost
+  username: jasonl
+  password: jasonl
+
+test: &TEST
+  <<: *default
+  database: jasonl_biz_test
+
+production: &PROD
+  <<: *default
+  database: jasonl_biz_prod
