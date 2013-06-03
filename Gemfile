@@ -13,9 +13,10 @@ gem 'mysql2'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                                :git => 'git://github.com/anjlab/bootstrap-rails.git',
-                                :branch => '3.0.0'
+  gem 'bootstrap-sass', '~> 2.3.1.3'
+  #gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+  #                              :git => 'git://github.com/anjlab/bootstrap-rails.git',
+  #                              :branch => '3.0.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -27,8 +28,10 @@ gem 'jquery-rails'
 
 gem 'thin'
 gem 'devise'
+gem 'rails-i18n'
 gem 'devise-i18n'
-gem 'rails_admin'
+
+#gem 'rails_admin'
 gem 'capistrano'
 gem 'kaminari'
 

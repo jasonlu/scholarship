@@ -1,4 +1,8 @@
 Scholarship::Application.routes.draw do
+  devise_for :users
+
+  get "home/welcome"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +52,9 @@ Scholarship::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'home#welcome'
+  get 'profile' => 'profile#index'
+  match '/users/:id', :to => 'users#show', :as => :user
 
   # See how all your routes lay out with "rake routes"
 
