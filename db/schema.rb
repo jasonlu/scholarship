@@ -11,7 +11,60 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603094131) do
+ActiveRecord::Schema.define(:version => 20130604033855) do
+
+  create_table "courses", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "briefing"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "due_at"
+    t.float    "price"
+    t.integer  "duration_days"
+    t.integer  "group_id"
+    t.integer  "category_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "site_configs", :force => true do |t|
+    t.string   "sitename"
+    t.string   "description"
+    t.string   "keywords"
+    t.string   "copyright"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "user_orders", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.integer  "payment_method"
+    t.integer  "payment_status"
+    t.float    "payment_price"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "user_profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "middlename"
+    t.string   "id_number"
+    t.date     "dob"
+    t.integer  "gender"
+    t.string   "education"
+    t.string   "country"
+    t.string   "state"
+    t.string   "register_address"
+    t.string   "address"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "cellphone"
+    t.string   "phone"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

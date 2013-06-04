@@ -1,0 +1,31 @@
+<h1>Listing user_orders</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Order</th>
+    <th>Payment method</th>
+    <th>Payment status</th>
+    <th>Payment price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user_orders.each do |user_order| %>
+  <tr>
+    <td><%= user_order.user_id %></td>
+    <td><%= user_order.order_id %></td>
+    <td><%= user_order.payment_method %></td>
+    <td><%= user_order.payment_status %></td>
+    <td><%= user_order.payment_price %></td>
+    <td><%= link_to 'Show', user_order %></td>
+    <td><%= link_to 'Edit', edit_user_order_path(user_order) %></td>
+    <td><%= link_to 'Destroy', user_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User order', new_user_order_path %>

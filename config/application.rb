@@ -60,5 +60,9 @@ module Scholarship
     config.assets.version = '1.0'
 
     config.i18n.default_locale = "zh-TW"
+
+    config.to_prepare do
+        Devise::SessionsController.skip_before_filter :check_profile
+    end
   end
 end

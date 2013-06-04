@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @user_order.user_id %>
+</p>
+
+<p>
+  <b>Order:</b>
+  <%= @user_order.order_id %>
+</p>
+
+<p>
+  <b>Payment method:</b>
+  <%= @user_order.payment_method %>
+</p>
+
+<p>
+  <b>Payment status:</b>
+  <%= @user_order.payment_status %>
+</p>
+
+<p>
+  <b>Payment price:</b>
+  <%= @user_order.payment_price %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_order_path(@user_order) %> |
+<%= link_to 'Back', user_orders_path %>

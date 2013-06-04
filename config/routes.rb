@@ -1,7 +1,28 @@
 Scholarship::Application.routes.draw do
-  devise_for :users
+  resources :site_configs
 
-  get "home/welcome"
+  devise_for :users, :controllers => { :registrations => "registrations" }
+  
+
+  #resources :user_profiles
+  
+  get 'profile', :to => 'user_profiles#show', :as => :user_profiles
+  get 'profile', :to => 'user_profiles#show', :as => :user_profile
+  get 'profile', :to => 'user_profiles#show', :as => :profile
+  get 'profile/edit', :to => 'user_profiles#edit', :as => :edit_user_profile
+  put 'profile/update', :to => 'user_profiles#update', :as => :user_profiles
+
+  #get 'profile', :to => 'user_profile#show', :as => :user_profiles
+  
+  #get 'profile/edit', :to => 'user_profiles#edit', :as => :user_profiles
+  #get 'profile/update', :to => 'user_profiles#update', :as => :update_user_profile
+  
+  resources :user_orders
+
+  resources :courses  
+  
+  root :to => 'home#welcome'
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -52,9 +73,9 @@ Scholarship::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#welcome'
-  get 'profile' => 'profile#index'
-  match '/users/:id', :to => 'users#show', :as => :user
+  
+  
+  
 
   # See how all your routes lay out with "rake routes"
 

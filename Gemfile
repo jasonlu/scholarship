@@ -31,7 +31,7 @@ gem 'devise'
 gem 'rails-i18n'
 gem 'devise-i18n'
 
-#gem 'rails_admin'
+gem 'rails_admin'
 gem 'capistrano'
 gem 'kaminari'
 

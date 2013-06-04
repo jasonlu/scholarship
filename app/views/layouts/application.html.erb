@@ -7,11 +7,61 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container center">
-	<%= render "common/header" %>
-	<p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <div class="container center div14">
+   <header>
+    <div class="row">
+      <span class="span5">
+        <a href="/"><h1 class="site_title">SITENAME</h1></a>
+      </span>
+      <span class="span7">
+        <div class="banner" id="banner3"></div>
+        <div class="banner" id="banner4"></div>
+      </span>
+    </div>
+  </header>
+  <ul class="breadcrumb">
+    <li><a href="#"><%= link_to t("首頁"), '/' %></a><span class="divider">/</span></li>
+    <li class="active">Data</li>
+    <li class="pull-right"><%= link_to t("我的賬戶"), user_profile_path %></li>
+  </ul>
+  <!--
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+-->
+<div class="row">
+  <div id="sidebar-left" class="span3">
+    <div id="user-panel" class="well">
+      <ul class="nav nav-list">
+        <% if user_signed_in? %>
+        <li class="nav-header"><%=t('歡迎！')%> <%= current_user.email %></li>
+        <li><%= link_to t("登出"), destroy_user_session_path%></li>
+        <% else %>
+        <li class="nav-header"><%= t("登入") %></li>
+        <li><%= render :partial => "common/login" %></li>
+        <li><%= link_to t("註冊"), new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </div>
+    <nav>
+      <ul class="nav nav-tabs nav-stacked">
+        <li>
+          <a>重要訊息</a>
+        </li>
+        <li><a>課程清單</a></li>
+        <li><a>一對一課程</a></li>
+        <li><a>常見問答 (FAQ)</a></li>
+        <li><a>聯絡我們</a></li>
+      </ul>
+      <div class="banner" id="banner1"></div>
+      <div class="banner" id="banner2"></div>
+    </nav>
+  </div>
+  <section id="main-content" class="span9">
     <%= yield %>
+  </section>
+</div>
+
+<footer>SITENAME [Copyright]</footer>
 </div>
 
 </body>

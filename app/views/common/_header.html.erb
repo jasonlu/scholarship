@@ -2,4 +2,13 @@
 	<span class="user_controll">
 		<%= t("登入") %>
 	</span>
+  <div class="user_navigation">
+    <% if user_signed_in? %>
+      <%=t('Hi!')%> <%= current_user.email %>
+      <%= link_to t("Sign out"), destroy_user_session_path%>
+    <% else %>
+      <%= link_to t("Sign in"), new_user_session_path %>
+      <%= link_to t("Sign up"), new_user_registration_path %>
+    <% end %>
+  </div>
 </header>
