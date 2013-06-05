@@ -36,6 +36,7 @@ gem 'capistrano'
 gem 'kaminari'
 gem 'tinymce-rails'
 gem "ckeditor"
+gem "seed_dump"
 #gem 'cancan'
 
 
