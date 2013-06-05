@@ -31,9 +31,13 @@ gem 'devise'
 gem 'rails-i18n'
 gem 'devise-i18n'
 
-gem 'rails_admin'
+gem 'rails_admin', '>= 0.4.8'
 gem 'capistrano'
 gem 'kaminari'
+gem 'tinymce-rails'
+gem "ckeditor"
+#gem 'cancan'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -59,7 +59,9 @@ module Scholarship
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.i18n.default_locale = "zh-TW"
+    config.i18n.default_locale = 'zh-TW'
+
+    config.time_zone = 'Taipei'
 
     config.to_prepare do
         Devise::SessionsController.skip_before_filter :check_profile

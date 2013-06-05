@@ -1,4 +1,9 @@
 Scholarship::Application.routes.draw do
+  
+
+  resources :pages
+
+
   resources :site_configs
 
   devise_for :users, :controllers => { :registrations => "registrations" }
@@ -22,6 +27,10 @@ Scholarship::Application.routes.draw do
   resources :courses  
   
   root :to => 'home#welcome'
+
+  constraints(:subdomain => /admin/) do
+    mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  end
   
 
   # The priority is based upon order of creation:

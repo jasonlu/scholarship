@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :check_profile
+  #before_filter :check_profile
+  before_filter :load_config
  
 
   def after_sign_in_path_for(resource)
@@ -20,6 +21,19 @@ class ApplicationController < ActionController::Base
         return redirect_to edit_user_profile_path
       end
     end
+
+  end
+
+  def load_config
+
+    site_configs = SiteConfig::all
+    @config = Hash.new
+    site_configs.each do |config|
+
+      @config[config.key.to_sym] = config.value
+
+    end
+    @config
 
   end
 

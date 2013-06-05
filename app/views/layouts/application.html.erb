@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Scholarship</title>
+  <meta charset="utf-8" />
+  <meta name="keywords" content="<%= @config[:keywords]%>">
+  <meta name="description" content="<%= @config[:description]%>"/>
+
+  <title><%= @config[:title]%></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,7 +15,7 @@
    <header>
     <div class="row">
       <span class="span5">
-        <a href="/"><h1 class="site_title">SITENAME</h1></a>
+        <a href="/"><h1 class="site_title"><%= @config[:sitename]%></h1></a>
       </span>
       <span class="span7">
         <div class="banner" id="banner3"></div>
@@ -45,12 +49,12 @@
     <nav>
       <ul class="nav nav-tabs nav-stacked">
         <li>
-          <a>重要訊息</a>
+          <a href="/news">重要訊息</a>
         </li>
-        <li><a>課程清單</a></li>
-        <li><a>一對一課程</a></li>
-        <li><a>常見問答 (FAQ)</a></li>
-        <li><a>聯絡我們</a></li>
+        <li><a href="/courses">課程清單</a></li>
+        <li><a href="/pages/one_on_one">一對一課程</a></li>
+        <li><a href="/pages/faq">常見問答 (FAQ)</a></li>
+        <li><a href="/pages/contact_us">聯絡我們</a></li>
       </ul>
       <div class="banner" id="banner1"></div>
       <div class="banner" id="banner2"></div>
@@ -61,7 +65,7 @@
   </section>
 </div>
 
-<footer>SITENAME [Copyright]</footer>
+<footer><%= @config[:copyright]%></footer>
 </div>
 
 </body>
