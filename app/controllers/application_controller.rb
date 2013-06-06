@@ -38,3 +38,9 @@ class ApplicationController < ActionController::Base
   end
 
 end
+
+class Float
+  def to_s
+    to_i == self ? to_i.to_s : self.to_s
+  end
+end

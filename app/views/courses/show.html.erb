@@ -1,33 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<h2><%= @course.title %></h2>
 <p>
-  <b>Title:</b>
-  <%= @course.title %>
+  <b>Category:</b>
+  <%= @course.category.title %>
 </p>
-
 <p>
-  <b>Description:</b>
-  <%= @course.description %>
-</p>
-
-<p>
-  <b>Briefing:</b>
-  <%= @course.briefing %>
-</p>
-
-<p>
-  <b>Start at:</b>
-  <%= @course.start_at %>
-</p>
-
-<p>
-  <b>End at:</b>
-  <%= @course.end_at %>
-</p>
-
-<p>
-  <b>Due at:</b>
-  <%= @course.due_at %>
+  <b>Group:</b>
+  <%= @course.group.title %>
 </p>
 
 <p>
@@ -35,21 +13,17 @@
   <%= @course.price %>
 </p>
 
+
 <p>
   <b>Duration days:</b>
   <%= @course.duration_days %>
 </p>
 
-<p>
-  <b>Group:</b>
-  <%= @course.group_id %>
-</p>
 
 <p>
-  <b>Category:</b>
-  <%= @course.category_id %>
+  <b>Description:</b>
+  <%= @course.description.html_safe %>
 </p>
 
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<%= link_to '加入購物車', edit_course_path(@course) %>

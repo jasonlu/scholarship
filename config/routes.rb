@@ -1,6 +1,8 @@
 Scholarship::Application.routes.draw do
   
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :pages
 
 
@@ -29,7 +31,7 @@ Scholarship::Application.routes.draw do
   root :to => 'home#welcome'
 
   constraints(:subdomain => /admin/) do
-    mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+    
   end
   
 

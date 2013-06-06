@@ -76,8 +76,22 @@ RailsAdmin.config do |config|
   # end
 
   # Your model's configuration, to help you get started:
+
+  config.models do
+    edit do
+      fields_of_type :text do
+        ckeditor do 
+          true
+        end
+      end
+    end
+  end
+
+
   config.model Page do
     edit do
+      field :title, :string
+      field :key, :string
       field :body, :text do
         ckeditor do 
           true
@@ -85,6 +99,73 @@ RailsAdmin.config do |config|
       end
     end
   end
+
+  config.model Course do
+    
+    configure :group, :belongs_to_association 
+    configure :category, :belongs_to_association
+    
+
+    list do
+
+      field :serial, :string do
+        label "課程編號"
+      end
+
+      field :category, :string do
+        formatted_value do
+          bindings[:object].category.title
+        end
+        label "課程類別"
+        searchable [Category => :title, Course => :category_id]
+      end
+
+      field :unit, :string do
+        label "單元"
+      end
+
+      field :title, :string do
+        label "課程標題"
+      end
+
+      field :duration_days do
+        label "長度"
+        formatted_value do
+          bindings[:object].duration_days.to_s + '天'
+        end
+      end
+
+    end
+
+    edit do
+      field :serial, :string do
+        label "課程編號"
+      end
+      field :unit, :string do
+        label "單元"
+      end
+      field :title, :string
+      field :briefing, :text 
+      field :start_at, :datetime 
+      field :end_at, :datetime 
+      field :due_at, :datetime 
+      field :price, :float 
+      field :duration_days, :integer do
+        default_value do
+          28
+        end
+      end
+      field :group
+      field :category
+      field :description, :text do
+        ckeditor do 
+          true
+        end
+      end
+    end
+  end
+
+  
   # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible. (visible(true))
 
   # config.model Course do
