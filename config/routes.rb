@@ -1,6 +1,11 @@
 Scholarship::Application.routes.draw do
   
 
+  
+
+  resources :carts
+
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :pages
@@ -31,6 +36,7 @@ Scholarship::Application.routes.draw do
   root :to => 'home#welcome'
 
   constraints(:subdomain => /admin/) do
+    mount Ckeditor::Engine => '/ckeditor'
     
   end
   

@@ -66,5 +66,8 @@ module Scholarship
     config.to_prepare do
         Devise::SessionsController.skip_before_filter :check_profile
     end
+
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    
   end
 end
