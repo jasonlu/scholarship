@@ -28,7 +28,7 @@
     <td><%= course.duration_days %></td>
     
     <td><%= link_to '詳情', course %></td>
-    <td><%= link_to '加入購物車', edit_course_path(course), :class => 'add-to-cart'%></td>
+    <td><%= link_to '加入購物車', '#', :class => 'add-to-cart', :data => {:id => course.id} %></td>
 
   </tr>
 <% end %>

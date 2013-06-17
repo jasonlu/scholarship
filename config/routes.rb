@@ -3,10 +3,10 @@ Scholarship::Application.routes.draw do
 
   
 
-  resources :carts
+  #resources :carts
 
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  
 
   resources :pages
 
@@ -24,6 +24,8 @@ Scholarship::Application.routes.draw do
   get 'profile/edit', :to => 'user_profiles#edit', :as => :edit_user_profile
   put 'profile/update', :to => 'user_profiles#update', :as => :user_profiles
 
+  post 'cart/add(.:format)', :to => 'carts#add'
+
   #get 'profile', :to => 'user_profile#show', :as => :user_profiles
   
   #get 'profile/edit', :to => 'user_profiles#edit', :as => :user_profiles
@@ -37,6 +39,7 @@ Scholarship::Application.routes.draw do
 
   constraints(:subdomain => /admin/) do
     mount Ckeditor::Engine => '/ckeditor'
+    mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
     
   end
   

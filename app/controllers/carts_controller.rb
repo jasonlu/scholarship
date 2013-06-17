@@ -53,6 +53,38 @@ class CartsController < ApplicationController
     end
   end
 
+  # POST /cart/add
+  # POST /cart/add.json
+  def add
+    @course = Course.find(params[:id])
+    session_id = request.session_options[:id]
+    
+
+    if current_user.nil?
+      uid = -1
+      @cart = Cart.find_by_session_id(session_id);
+    else
+      uid = current_user.id
+      @cart = Cart.find_by_user_id(uid);
+    end
+
+    unless @cart.nil?
+      @cart = Cart.new
+      @cart.uid = uid
+      @cart.course_id = @course.id
+      @cart.session_id = session_id
+      
+      when condition
+        
+      end
+    end
+
+    respond_to do |format|
+        format.html { render action: "new" }
+        format.json { render json: @course, status: :created }
+    end
+  end
+
   # PUT /carts/1
   # PUT /carts/1.json
   def update
