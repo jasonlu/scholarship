@@ -26,6 +26,8 @@ Scholarship::Application.routes.draw do
 
   post 'cart/add(.:format)', :to => 'carts#add'
 
+  get 'cart', :to => 'carts#show', :as => :cart
+
   #get 'profile', :to => 'user_profile#show', :as => :user_profiles
   
   #get 'profile/edit', :to => 'user_profiles#edit', :as => :user_profiles
