@@ -1,4 +1,8 @@
 class UserOrdersController < ApplicationController
+
+  #before_filter :authenticate_user!
+
+
   # GET /user_orders
   # GET /user_orders.json
   def index
@@ -21,51 +25,52 @@ class UserOrdersController < ApplicationController
     end
   end
 
-  # GET /user_orders/new
-  # GET /user_orders/new.json
+  # POST /user_orders/new
+  # POST /user_orders/new.json
   def new
-    @user_order = UserOrder.new
+
+    session_id = cookies[:cart_id]
+    #order_number = current_user.id.to_s + Time.now.to_i.to_s
+    order_number = session_id.to_i(16).to_s
+    carts = Cart.where("session_id = ?", session_id)
+
+    if carts.length == 0
+
+      @courses = Array.new(Course.new)
+
+    else
+
+      courses_array = Array.new
+      price = 0
+      carts.each do |cart|
+        price = price + cart.course.price
+        courses_array.push(cart.course_id)
+      end
+      courses = courses_array.join(",")
+
+      @user_order = UserOrder.find_by_order_number(order_number)
+
+      if @user_order.blank?
+        @user_order = UserOrder.new
+        @user_order.user_id = current_user.id
+        @user_order.payment_status = 0
+        @user_order.payment_method = 0
+        @user_order.payment_price = price
+        @user_order.courses = courses
+        @user_order.order_number = order_number
+        @user_order.save!
+      else
+
+        @courses = Course.find(@user_order.courses.split(','))
+
+      end
+
+      
+    end
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render 'show' }
       format.json { render json: @user_order }
-    end
-  end
-
-  # GET /user_orders/1/edit
-  def edit
-    @user_order = UserOrder.find(params[:id])
-  end
-
-  # POST /user_orders
-  # POST /user_orders.json
-  def create
-    @user_order = UserOrder.new(params[:user_order])
-
-    respond_to do |format|
-      if @user_order.save
-        format.html { redirect_to @user_order, notice: 'User order was successfully created.' }
-        format.json { render json: @user_order, status: :created, location: @user_order }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user_order.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /user_orders/1
-  # PUT /user_orders/1.json
-  def update
-    @user_order = UserOrder.find(params[:id])
-
-    respond_to do |format|
-      if @user_order.update_attributes(params[:user_order])
-        format.html { redirect_to @user_order, notice: 'User order was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user_order.errors, status: :unprocessable_entity }
-      end
     end
   end
 

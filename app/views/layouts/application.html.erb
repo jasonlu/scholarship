@@ -12,6 +12,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%=request.session_options[:id] %>
   <div class="container center div14">
    <header>
     <div class="row">
@@ -26,9 +27,13 @@
   </header>
   <ul class="breadcrumb">
     <li><a href="#"><%= link_to t("首頁"), '/' %></a><span class="divider">/</span></li>
-    <li class="active">Data</li>
-    <li class="pull-right"><%= link_to t("我的賬戶"), user_profile_path %></li>&nbsp;
-    <li class="pull-right"><%= link_to t("購物車"), cart_path %></li>
+    
+    <li class="pull-right">
+      <a class="btn btn-small" href="<%= user_profile_path %>"><i class="icon-star"></i> 我的賬戶</a>
+    </li>
+    <li class="pull-right">
+      <a class="btn btn-small" href="<%= cart_path %>"><i class="icon-shopping-cart"></i> 購物車</a>
+    </li>
   </ul>
   <!--
   <p class="notice"><%= notice %></p>
@@ -53,6 +58,9 @@
         <li>
           <a href="/news">重要訊息</a>
         </li>
+        <% if user_signed_in? %>
+        <li><a href="/study">上課去</a></li>
+        <% end %>
         <li><a href="/courses">課程清單</a></li>
         <li><a href="/pages/one_on_one">一對一課程</a></li>
         <li><a href="/pages/faq">常見問答 (FAQ)</a></li>

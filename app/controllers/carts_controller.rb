@@ -13,7 +13,8 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-    session_id = request.session_options[:id]
+    #session_id = request.session_options[:id]
+    session_id = cookies[:cart_id]
     @carts = Cart.where("session_id = ?", session_id)
 
     respond_to do |format|
@@ -40,8 +41,9 @@ class CartsController < ApplicationController
   def add
     @course = Course.find(params[:id])
     course_id = @course.id
-    session_id = request.session_options[:id]
-    
+    session_id = cookies[:cart_id].blank? ? request.session_options[:id] : cookies[:cart_id]
+
+    Cart.where("created_at < ?", 72.hour.ago).delete_all
 
     if current_user.nil?
       uid = -1
@@ -49,26 +51,22 @@ class CartsController < ApplicationController
     else
       uid = current_user.id
       carts = Cart.where("user_id = ?", uid).update_all(:session_id => session_id)
-
     #  @cart = Cart.find_by_user_id(uid);
     end
 
     carts = Cart.where("session_id = ? AND course_id = ?", session_id, course_id)
-    if carts.nil?
+    if carts.first.nil?
       @cart = Cart.new
       @cart.user_id = uid
       @cart.session_id = session_id
       @cart.course_id = course_id
       @cart.save
     end
-    
-    
 
     respond_to do |format|
         format.html { render action: "new" }
-        format.json { render json: @course, status: :created }
+        format.json { render json: carts, status: :created }
     end
   end
 
- 
 end

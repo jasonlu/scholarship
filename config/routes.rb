@@ -26,6 +26,10 @@ Scholarship::Application.routes.draw do
 
   post 'cart/add(.:format)', :to => 'carts#add'
 
+  post 'order/new', :to => 'user_orders#new'
+  get 'order/new', :to => 'user_orders#new'
+  get 'orders', :to => 'user_orders#index', :as => :user_orders
+
   get 'cart', :to => 'carts#show', :as => :cart
 
   #get 'profile', :to => 'user_profile#show', :as => :user_profiles
@@ -37,13 +41,14 @@ Scholarship::Application.routes.draw do
 
   resources :courses  
   
-  root :to => 'home#welcome'
 
   constraints(:subdomain => /admin/) do
     mount Ckeditor::Engine => '/ckeditor'
-    mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+    mount RailsAdmin::Engine => '/', :as => 'rails_admin'
     
   end
+
+  root :to => 'home#welcome'
   
 
   # The priority is based upon order of creation:
