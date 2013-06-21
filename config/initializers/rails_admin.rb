@@ -1,8 +1,44 @@
+require Rails.root.join('lib', 'rails_admin_activate_order.rb')
 # RailsAdmin config file. Generated on June 05, 2013 09:36
 # See github.com/sferik/rails_admin for more informations
+# Register the class in lib/rails_admin_publish.rb
+module RailsAdmin
+  module Config
+    module Actions
+      class ActivateOrder < RailsAdmin::Config::Actions::Base
+        RailsAdmin::Config::Actions.register(self)
+      end
+    end
+  end
+end
+ 
+
 
 RailsAdmin.config do |config|
-
+  config.actions do
+    # root actions
+    dashboard                     # mandatory
+    # collection actions
+    index                         # mandatory
+    new
+    export
+    history_index
+    bulk_delete
+    # member actions
+    show
+    edit
+    delete
+    history_show
+    show_in_app
+   
+    # Set the custom action here
+    activate_order do
+      # Make it visible only for article model. You can remove this if you don't need.
+      visible do
+        bindings[:abstract_model].model.to_s == "UserOrder"
+      end
+    end
+  end
   # If your default_local is different from :en, uncomment the following 2 lines and set your default locale here:
   # require 'i18n'
   # I18n.default_locale = :de

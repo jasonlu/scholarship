@@ -3,6 +3,9 @@ Scholarship::Application.routes.draw do
 
   
 
+  
+
+
   #resources :carts
 
 
@@ -31,7 +34,8 @@ Scholarship::Application.routes.draw do
   get 'orders', :to => 'user_orders#index', :as => :user_orders
 
   get 'cart', :to => 'carts#show', :as => :cart
-
+  get 'study', :to => 'studies#index', :as => :study
+  resources :studies
   #get 'profile', :to => 'user_profile#show', :as => :user_profiles
   
   #get 'profile/edit', :to => 'user_profiles#edit', :as => :user_profiles
