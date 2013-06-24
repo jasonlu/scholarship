@@ -1,24 +1,18 @@
-<p id="notice"><%= notice %></p>
+<dl>
+  <% @course.course_items.each do |item| %>
+  <dt><%= item.question %></dt>
+  <dd>
+    <p>
+    <%= item.answer %>
+    </p>
+    <audio controls>
+      <source src="<%= item.audio.url %>" type="audio/mp4">
+      <p>Your browser does not support the audio element.</p>
+    </audio>
+  </dd>
 
-<p>
-  <b>User:</b>
-  <%= @study.user_id %>
-</p>
-
-<p>
-  <b>Course:</b>
-  <%= @study.course_id %>
-</p>
-
-<p>
-  <b>Progress:</b>
-  <%= @study.progress_id %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @study.status %>
-</p>
+  <% end %>
+<dl>
 
 
 <%= link_to 'Edit', edit_study_path(@study) %> |

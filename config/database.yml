@@ -2,7 +2,7 @@ development: &default
   adapter: mysql2
   encoding: utf8
   database: jasonl_biz_development
-  host: localhost
+  host: aws.jasonl.biz
   username: jasonl
   password: jasonl
 
