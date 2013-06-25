@@ -1,3 +1,4 @@
+
 <dl>
   <% @course.course_items.each do |item| %>
   <dt><%= item.question %></dt>
@@ -14,6 +15,6 @@
   <% end %>
 <dl>
 
-
+<script type="text/javascript" src="/javascripts/jwplayer.js"></script>
 <%= link_to 'Edit', edit_study_path(@study) %> |
 <%= link_to 'Back', studies_path %>
