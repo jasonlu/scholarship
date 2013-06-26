@@ -1,20 +1,51 @@
+<%= javascript_include_tag "/javascripts/jwplayer.js" %>
+<%= javascript_include_tag "/javascripts/jwplayer.html5.js" %>
 
-<dl>
+
+<style>
+#study_block {
+  position: relative;
+  width: 95%;
+  padding-left: 5%;
+  height: 300px;
+  overflow: hidden;
+}
+.course_item {
+  /* margin-bottom: 300px; */
+  display: none;
+}
+#audio_player {
+  display: none;
+}
+</style>
+
+
+<div id="audio_player">Loading the player...</div>
+<div id="study_block">
+  <% i = 0 %>
   <% @course.course_items.each do |item| %>
-  <dt><%= item.question %></dt>
-  <dd>
-    <p>
-    <%= item.answer %>
-    </p>
-    <audio controls>
-      <source src="<%= item.audio.url %>" type="audio/mp4">
-      <p>Your browser does not support the audio element.</p>
-    </audio>
-  </dd>
+  <% i = i + 1 %>
+  <dl class="course_item course_item_<%= i %>">
+    <dt><%= item.question %></dt>
+    <dd data-audio-url="<%= item.audio.url %>">
+      <%= item.answer %><br>
+      <!--
+      <audio controls>
+        <source src="<%= item.audio.url %>" type="audio/mp4">
+        <p>Your browser does not support the audio element.</p>
+      </audio>
+      -->
+    </dd>
 
+    <a class="btn btn-primary btn-previous">Back</a>
+
+    <a class="btn btn-play"><i class="icon-headphones"></i>Play</a>
+
+    <a class="btn btn-primary pull-right btn-next">Next</a>
+  </dl>
   <% end %>
-<dl>
+<div>
 
-<script type="text/javascript" src="/javascripts/jwplayer.js"></script>
-<%= link_to 'Edit', edit_study_path(@study) %> |
-<%= link_to 'Back', studies_path %>
+<script type="text/javascript">
+  
+</script>
