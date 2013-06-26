@@ -2,21 +2,32 @@
 
 <table class="table table-striped">
   <tr>
-    <th>課程名稱</th>
     <th>課程類別</th>
+    <th>課程名稱</th>
     <th>課程單元</th>
-    <th>課程狀態</th>
-    <th></th>
+    <th>課程編號</th>
+    <th>開始上課日期</th>
+    <th>結束上課日期</th>
+    <th>上課去</th>
+    <th>期末考成績</th>
+    <th>通關</th>
+    <th>易錯排行榜</th>
+    <th>學習紀錄</th>
   </tr>
 
 <% @studies.each do |study| %>
   <tr>
-    <td><%= study.course.title %></td>
     <td><%= study.course.category.title %></td>
+    <td><%= study.course.title %></td>
     <td><%= study.course.unit %></td>
-    <td><%= study.status %></td>
+    <td><%= study.course.serial %></td>
+    <td><%= study.starts_at %></td>
+    <td><%= study.ends_at %></td>
     <td><%= link_to '上課', study %></td>
-    
+    <td><%= study.score %></td>
+    <td><%= study.passed %></td>
+    <td><%= link_to '易錯排行榜', study %></td>
+    <td><%= link_to '學習紀錄', study %></td>
     
   </tr>
 <% end %>
