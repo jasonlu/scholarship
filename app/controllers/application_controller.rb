@@ -1,9 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  layout "application"
   #before_filter :check_profile
   before_filter :load_config
   before_filter :set_cookie
+  before_filter :set_layout
  
+
+  def set_layout
+    @domain = request.subdomains.first
+    if @domain == "admin"
+      self.class.layout "admin"
+    end
+  end
 
   def after_sign_in_path_for(resource)
     session_id = request.session_options[:id]

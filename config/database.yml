@@ -12,4 +12,4 @@ test: &TEST
 
 production: &PROD
   <<: *default
-  database: jasonl_biz_prod
+  database: jasonl_biz_development

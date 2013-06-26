@@ -10,10 +10,34 @@ gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
+
+
+group :development do
+  gem 'capistrano'
+end
+
+gem 'rails-i18n'
+gem 'jquery-rails'
+
+gem 'thin'
+gem 'devise'
+gem 'devise-i18n'
+
+gem 'rails_admin', '>= 0.4.8'
+
+gem 'kaminari'
+gem "ckeditor"
+gem "seed_dump"
+gem "paperclip", "~> 3.0"
+
+
+
+
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'bootstrap-sass', '~> 2.3.1.3'
+  #gem 'sass-rails',   '~> 3.2.3'
+  #gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails', '~> 3.2'
+  gem 'bootstrap-sass', '~> 2.3.2.0'
   #gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
   #                              :git => 'git://github.com/anjlab/bootstrap-rails.git',
   #                              :branch => '3.0.0'
@@ -21,23 +45,9 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+  #gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
-gem 'thin'
-gem 'devise'
-gem 'rails-i18n'
-gem 'devise-i18n'
-
-gem 'rails_admin', '>= 0.4.8'
-gem 'capistrano'
-gem 'kaminari'
-gem 'tinymce-rails'
-gem "ckeditor"
-gem "seed_dump"
-gem "paperclip", "~> 3.0"
 
 #gem 'cancan'
 

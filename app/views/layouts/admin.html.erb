@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+
+
+  <title><%= @config[:title]%></title>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container center div14">
+  
+<div class="row">
+  <div id="sidebar-left" class="div14">
+    <div id="user-panel" class="well">
+      <ul class="nav nav-list">
+        <% if user_signed_in? %>
+        <li class="nav-header"><%=t('歡迎！')%> <%= current_user.email %></li>
+        <li><%= link_to t("登出"), destroy_user_session_path%></li>
+        <% else %>
+        <li class="nav-header"><%= t("登入") %></li>
+        <li><%= render :partial => "common/login" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<%= stylesheet_link_tag    "application", :media => "all" %>
+
+<footer><%= @config[:copyright]%></footer>
+</div>
+
+</body>
+</html>
