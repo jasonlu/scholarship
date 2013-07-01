@@ -12,6 +12,18 @@ set :scm_passphrases, ""
 set :stages, ["staging", "production"]
 set :default_stage, "staging"
 
+load 'deploy/assets'
+namespace :deploy do
+  namespace :assets do
+    desc 'Run the precompile task locally and rsync with shared'
+    task :precompile, :roles => :web, :except => { :no_release => true } do
+      %x{bundle exec rake assets:precompile}
+      %x{rsync --recursive --times --rsh=ssh --compress --human-readable --progress public/assets #{user}@#{host}:#{shared_path}}
+      %x{bundle exec rake assets:clean}
+    end
+  end
+end
+
 namespace :bundle do
 
   desc "run bundle install and ensure all gem requirements are met"
@@ -21,6 +33,7 @@ namespace :bundle do
 
 end
 before "deploy:restart", "bundle:install"
+
 
 
 
