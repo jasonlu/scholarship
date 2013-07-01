@@ -6,6 +6,23 @@ Scholarship::Application.routes.draw do
   
 
 
+  get "my_account", :to => 'my_account#profile', :as => :my_account
+  get "my_account/profile"
+
+  get "my_account/cart"
+
+  get "my_account/receipt"
+
+  get "my_account/choose_start_day"
+
+  get "my_account/study_record"
+
+  get "my_account/self_learning"
+
+  get "my_account/news"
+
+  get "my_account/logout"
+
   #resources :carts
 
 
