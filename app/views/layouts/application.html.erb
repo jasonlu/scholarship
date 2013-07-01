@@ -12,65 +12,56 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%=request.session_options[:id] %>
   <div class="container center div14">
    <header>
     <div class="row">
       <span class="span5">
-        <a href="/"><h1 class="site_title"><%= @config[:sitename]%></h1></a>
+        <a href="/"><h1 class="site_title"><%= image_tag "/images/logo.jpg", height: "50", class: "logo" %><%= @config[:sitename]%></h1></a>
       </span>
       <span class="span7">
         <div class="banner" id="banner3"></div>
         <div class="banner" id="banner4"></div>
       </span>
     </div>
-  </header>
-  <ul class="breadcrumb">
-    <li><a href="#"><%= link_to t("首頁"), '/' %></a><span class="divider">/</span></li>
-    
-    <li class="pull-right">
-      <a class="btn btn-small" href="<%= user_profile_path %>"><i class="icon-star"></i> 我的賬戶</a>
-    </li>
-    <li class="pull-right">
+    <div id="user-panel" class="">
+      <% if user_signed_in? %>
+      <%=t('歡迎！')%> <%= current_user.email %>
+      <% else %>
+      <%= link_to t("登入") + '/' + t("註冊"), new_user_registration_path %>
+      <% end %>
+      
       <a class="btn btn-small" href="<%= cart_path %>"><i class="icon-shopping-cart"></i> 購物車</a>
+      <% if user_signed_in? %>
+      <%= link_to t("登出"), destroy_user_session_path, class: "btn btn-small" %>
+      <% end %>
+    </div>
+  </header>
+  <ul class="nav nav-pills">
+    <li><%= link_to t("首頁"), '/' %></li>
+    <li><a href="/news">重要訊息</a></li>
+    <% if user_signed_in? %>
+    <li><a href="/study">上課去</a></li>
+    <% end %>
+    <li><a href="/courses">課程清單</a></li>
+    <li><a href="/pages/one_on_one">一對一課程</a></li>
+    <li><a href="/pages/faq">常見問答 (FAQ)</a></li>
+    <li><a href="/pages/contact_us">聯絡我們</a></li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          我的賬戶
+          <b class="caret"></b>
+        </a>
+      <ul class="dropdown-menu">
+        <!-- links -->
+      </ul>
     </li>
   </ul>
   <!--
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
--->
+  -->
 <div class="row">
-  <div id="sidebar-left" class="span3">
-    <div id="user-panel" class="well">
-      <ul class="nav nav-list">
-        <% if user_signed_in? %>
-        <li class="nav-header"><%=t('歡迎！')%> <%= current_user.email %></li>
-        <li><%= link_to t("登出"), destroy_user_session_path%></li>
-        <% else %>
-        <li class="nav-header"><%= t("登入") %></li>
-        <li><%= render :partial => "common/login" %></li>
-        <li><%= link_to t("註冊"), new_user_registration_path %></li>
-        <% end %>
-      </ul>
-    </div>
-    <nav>
-      <ul class="nav nav-tabs nav-stacked">
-        <li>
-          <a href="/news">重要訊息</a>
-        </li>
-        <% if user_signed_in? %>
-        <li><a href="/study">上課去</a></li>
-        <% end %>
-        <li><a href="/courses">課程清單</a></li>
-        <li><a href="/pages/one_on_one">一對一課程</a></li>
-        <li><a href="/pages/faq">常見問答 (FAQ)</a></li>
-        <li><a href="/pages/contact_us">聯絡我們</a></li>
-      </ul>
-      <div class="banner" id="banner1"></div>
-      <div class="banner" id="banner2"></div>
-    </nav>
-  </div>
-  <section id="main-content" class="span9" style="min-height:1000px;">
+  <section id="main-content" class="span12" style="min-height:1000px;">
     <%= yield %>
   </section>
 </div>

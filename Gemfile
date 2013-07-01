@@ -36,8 +36,8 @@ gem "paperclip", "~> 3.0"
 group :assets do
   #gem 'sass-rails',   '~> 3.2.3'
   #gem 'coffee-rails', '~> 3.2.1'
-  gem 'sass-rails', '~> 3.2'
-  gem 'bootstrap-sass', '~> 2.3.2.0'
+  gem 'sass-rails', '>= 3.2'
+  gem 'bootstrap-sass', '>= 2.3.2.0'
   #gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
   #                              :git => 'git://github.com/anjlab/bootstrap-rails.git',
   #                              :branch => '3.0.0'

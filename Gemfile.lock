@@ -175,6 +175,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
+    uglifier (2.1.1)
+      execjs (>= 0.3.0)
+      multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
 
@@ -182,7 +185,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (~> 2.3.2.0)
+  bootstrap-sass (>= 2.3.2.0)
   capistrano
   ckeditor
   devise
@@ -194,6 +197,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails-i18n
   rails_admin (>= 0.4.8)
-  sass-rails (~> 3.2)
+  sass-rails (>= 3.2)
   seed_dump
   thin
+  uglifier (>= 1.0.3)
