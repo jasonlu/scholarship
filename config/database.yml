@@ -2,7 +2,7 @@ development: &default
   adapter: mysql2
   encoding: utf8
   database: jasonl_biz_development
-  host: 54.250.132.34
+  host: 54.250.144.204
   username: jasonl
   password: jasonl
 
