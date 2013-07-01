@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
     if current_user.user_profile.nil? || current_user.user_profile.firstname.blank?
       '/profile/edit'
     else
-      request.referrer
+      #request.referrer
+      '/'
     end
 
   end

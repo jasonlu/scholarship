@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626150148) do
+ActiveRecord::Schema.define(:version => 20130701140054) do
 
   create_table "carts", :force => true do |t|
     t.string   "user_id"
@@ -79,93 +79,16 @@ ActiveRecord::Schema.define(:version => 20130626150148) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "pages", :force => true do |t|
-    t.string   "key"
+  create_table "news", :force => true do |t|
     t.string   "title"
-    t.text     "body"
+    t.text     "content"
+    t.datetime "publish_at"
+    t.datetime "close_at"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "rails_admin_histories", :force => true do |t|
-    t.text     "message"
-    t.string   "username"
-    t.integer  "item"
-    t.string   "table"
-    t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
+# Could not dump table "pages" because of following ActiveRecord::StatementInvalid
+#   Mysql2::Error: Lost connection to MySQL server during query: SHOW KEYS FROM `pages`
 
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
-
-  create_table "site_configs", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "key"
-    t.text     "value"
-  end
-
-  create_table "studies", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "course_id"
-    t.integer  "progress_id"
-    t.integer  "status"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.float    "score"
-    t.date     "starts_at"
-    t.date     "ends_at"
-    t.integer  "passed"
-  end
-
-  create_table "user_orders", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "order_number"
-    t.integer  "payment_method"
-    t.integer  "payment_status"
-    t.float    "payment_price"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.string   "courses"
-  end
-
-  create_table "user_profiles", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "middlename"
-    t.string   "id_number"
-    t.date     "dob"
-    t.integer  "gender"
-    t.string   "education"
-    t.string   "country"
-    t.string   "state"
-    t.string   "register_address"
-    t.string   "address"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.string   "cellphone"
-    t.string   "phone"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-  end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-end

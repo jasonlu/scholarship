@@ -26,3 +26,14 @@
 .container {
   position: relative;
 }
+
+.center {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#new_user input[type="email"], #new_user input[type="password"]{
+  width: 99%;
+
+}

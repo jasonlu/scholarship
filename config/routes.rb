@@ -6,6 +6,12 @@ Scholarship::Application.routes.draw do
   
 
 
+  #resources :news
+
+  
+  get "news/:title", :to => 'news#show', :as => :news_item
+  get "news", :to => 'news#index', :as => :news_index
+
   get "my_account", :to => 'my_account#profile', :as => :my_account
   get "my_account/profile"
 
