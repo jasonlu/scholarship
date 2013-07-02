@@ -2,6 +2,6 @@
   <h1><small><%= @news.title %></small></h1>
 </div>
 <p>
-  <%= simple_format(@news.content) %>
+  <%= @news.content.html_safe %>
 </p>
 <p class="text-right text-info"><%= @news.user.user_profile.firstname + ' ' + @news.user.user_profile.lastname %></p>

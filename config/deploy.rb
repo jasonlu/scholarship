@@ -12,7 +12,7 @@ set :scm_passphrases, ""
 set :stages, ["staging", "production"]
 set :default_stage, "staging"
 
-load 'deploy/assets'
+#load 'deploy/assets'
 namespace :deploy do
   namespace :assets do
     desc 'Run the precompile task locally and rsync with shared'

@@ -1,6 +1,7 @@
 class UserOrder < ActiveRecord::Base
   attr_accessible :order_number, :courses, :payment_method, :payment_price, :payment_status, :user_id
   belongs_to :user
+  has_many :studies
 
   rails_admin do 
     configure :user, :belongs_to_association 

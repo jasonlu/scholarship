@@ -1,5 +1,5 @@
 class CourseItem < ActiveRecord::Base
-  has_attached_file :audio
+  has_attached_file :audio, :url => "/files/:class/:attachment/:basename.:extension"
 
   attr_accessor :delete_audio
   attr_accessible :answer, :course_id, :question, :audio, :delete_audio

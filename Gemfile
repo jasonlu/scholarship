@@ -24,6 +24,7 @@ gem 'devise'
 gem 'devise-i18n'
 
 gem 'rails_admin', '>= 0.4.8'
+gem "rails_admin-i18n", "~> 0.0.9"
 
 gem 'kaminari'
 gem "ckeditor"

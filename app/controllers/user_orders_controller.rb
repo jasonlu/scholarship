@@ -1,6 +1,6 @@
 class UserOrdersController < ApplicationController
-
-  #before_filter :authenticate_user!
+  skip_before_filter :verify_authenticity_token
+  before_filter :authenticate_user!
 
 
   # GET /user_orders
@@ -17,8 +17,9 @@ class UserOrdersController < ApplicationController
   # GET /user_orders/1
   # GET /user_orders/1.json
   def show
-    @user_order = UserOrder.find(params[:id])
 
+    @user_order = UserOrder.find_by_user_id(current_user.id)
+    @courses = Course.find(@user_order.courses.split(','))
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user_order }
@@ -31,7 +32,8 @@ class UserOrdersController < ApplicationController
 
     session_id = cookies[:cart_id]
     #order_number = current_user.id.to_s + Time.now.to_i.to_s
-    order_number = session_id.to_i(16).to_s
+    order_number = Time.now.strftime("%Y%m%d%H%M%S") + session_id.to_i(16).to_s[0..2]
+    #order_number = session_id.to_i(16).to_s
     carts = Cart.where("session_id = ?", session_id)
 
     if carts.length == 0

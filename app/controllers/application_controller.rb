@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  #protect_from_forgery
   layout "application"
   #before_filter :check_profile
   before_filter :load_config
@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def set_layout
     @domain = request.subdomains.first
-    if @domain == "admin"
+    if @domain == "admin" && !user_signed_in?
       self.class.layout "admin"
     end
   end

@@ -1,47 +1,30 @@
 Scholarship::Application.routes.draw do
-  
+  constraints(:subdomain => /admin/) do
+    mount Ckeditor::Engine => '/ckeditor'
+    mount RailsAdmin::Engine => '/', :as => 'rails_admin'
+    
+  end
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
-  
-
-  
-
-
-  #resources :news
-
-  
+  #resources :news  
   get "news/:title", :to => 'news#show', :as => :news_item
   get "news", :to => 'news#index', :as => :news_index
-
   get "my_account", :to => 'my_account#profile', :as => :my_account
   get "my_account/profile"
-
   get "my_account/cart"
-
   get "my_account/receipt"
-
   get "my_account/choose_start_day"
-
   get "my_account/study_record"
-
   get "my_account/self_learning"
-
   get "my_account/news"
-
   get "my_account/logout"
 
+  get "calendar", :to => 'my_account#calendar'
   #resources :carts
-
-
   
 
   resources :pages
-
-
   resources :site_configs
-
-  devise_for :users, :controllers => { :registrations => "registrations" }
-  
-
   #resources :user_profiles
   
   get 'profile', :to => 'user_profiles#show', :as => :user_profiles
@@ -54,7 +37,7 @@ Scholarship::Application.routes.draw do
 
   post 'order/new', :to => 'user_orders#new'
   get 'order/new', :to => 'user_orders#new'
-  get 'orders', :to => 'user_orders#index', :as => :user_orders
+  get 'orders', :to => 'user_orders#show', :as => :user_orders
 
   get 'cart', :to => 'carts#show', :as => :cart
   get 'study', :to => 'studies#index', :as => :studies
@@ -65,18 +48,8 @@ Scholarship::Application.routes.draw do
   
   #get 'profile/edit', :to => 'user_profiles#edit', :as => :user_profiles
   #get 'profile/update', :to => 'user_profiles#update', :as => :update_user_profile
-  
   resources :user_orders
-
   resources :courses  
-  
-
-  constraints(:subdomain => /admin/) do
-    mount Ckeditor::Engine => '/ckeditor'
-    mount RailsAdmin::Engine => '/', :as => 'rails_admin'
-    
-  end
-
   root :to => 'home#welcome'
   
 

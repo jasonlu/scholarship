@@ -1,4 +1,7 @@
 class MyAccountController < ApplicationController
+  
+  before_filter :authenticate_user!
+
   def profile
   end
 
@@ -21,5 +24,10 @@ class MyAccountController < ApplicationController
   end
 
   def logout
+  end
+
+  def calendar
+    @studies = Study.where("user_id = ?", current_user.id)
+    
   end
 end
