@@ -27,14 +27,12 @@ class UserOrdersController < ApplicationController
   end
 
   def new
-
+    order_number = params[:order_number]
     session_id = cookies[:cart_id]
     #order_number = current_user.id.to_s + Time.now.to_i.to_s
     
     #order_number = session_id.to_i(16).to_s
     carts = Cart.where("session_id = ?", session_id)
-    order_number = carts.first.order_number
-
     if carts.length == 0
       return 0
       #@courses = Array.new(Course.new)

@@ -42,6 +42,7 @@
     <td><%= number_to_currency(total_price, :precision => 0, :locale => :zh_tw) %></td>
   </tr>
 </table>
+<%= link_to "送出訂單", new_user_order_path(@carts.first.order_number) %>
 <button class="btn btn-primary pull-right clearfix" id="send_order" type="button">送出訂單</button>
 <hr class="clearfix">
 <ul>

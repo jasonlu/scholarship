@@ -36,7 +36,7 @@ Scholarship::Application.routes.draw do
   post 'cart/add(.:format)', :to => 'carts#add'
 
   post 'order/new', :to => 'user_orders#new'
-  get 'order/new', :to => 'user_orders#new'
+  get 'order/new/:order_number', :to => 'user_orders#new', :as => :new_user_order
   get 'orders', :to => 'user_orders#show', :as => :user_orders
 
   get 'cart', :to => 'carts#show', :as => :cart
