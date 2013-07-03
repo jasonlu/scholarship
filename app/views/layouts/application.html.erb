@@ -25,11 +25,10 @@
     </div>
     <div id="user-panel" class="">
       <% if user_signed_in? %>
-      <%=t('歡迎！')%> <%= current_user.email %>
+      <%=t('歡迎！')%> <%= current_user.user_profile.firstname %>&nbsp;
       <% else %>
-      <%= link_to t("登入") + '/' + t("註冊"), new_user_registration_path %>
+      <%= link_to t("登入"), new_user_session_path %> | <%= link_to t("註冊"), new_user_registration_path %>
       <% end %>
-      
       <a class="btn btn-small" href="<%= cart_path %>"><i class="icon-shopping-cart"></i> 購物車</a>
       <% if user_signed_in? %>
       <%= link_to t("登出"), destroy_user_session_path, class: "btn btn-small" %>

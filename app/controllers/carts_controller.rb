@@ -53,6 +53,16 @@ class CartsController < ApplicationController
       carts = Cart.where("user_id = ?", uid).update_all(:session_id => session_id)
     #  @cart = Cart.find_by_user_id(uid);
     end
+    last_cart = Cart.find_by_session_id(session_id)
+    if last_cart.blank?
+      order_number = Time.now.strftime("%Y%m%d%H%M%S") + session_id.to_i(16).to_s[0..2]
+    else
+      if last_cart.order_number.blank?
+        order_number = Time.now.strftime("%Y%m%d%H%M%S") + session_id.to_i(16).to_s[0..2]
+      else
+        order_number = last_cart.order_number
+      end
+    end
 
     carts = Cart.where("session_id = ? AND course_id = ?", session_id, course_id)
     if carts.first.nil?
@@ -60,6 +70,7 @@ class CartsController < ApplicationController
       @cart.user_id = uid
       @cart.session_id = session_id
       @cart.course_id = course_id
+      @cart.order_number = order_number
       @cart.save
     end
 
