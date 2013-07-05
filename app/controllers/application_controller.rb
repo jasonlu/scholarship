@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   layout "application"
   #before_filter :check_profile
   before_filter :load_config
-  before_filter :set_cookie
-  before_filter :set_layout
+  #before_filter :set_cookie
+  #before_filter :set_layout
  
 
   def set_layout
