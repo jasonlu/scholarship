@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   has_many :user_orders
   has_many :news
+  has_many :inboxes
+  has_many :messages, through: :inboxes
   has_one :user_profile
   devise :database_authenticatable, :registerable, :recoverable, :trackable, :validatable
   #:rememberable, 

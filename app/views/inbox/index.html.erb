@@ -1,0 +1,17 @@
+<h1>Inbox#index</h1>
+<p>Find me in app/views/inbox/index.html.erb</p>
+
+<table class="table table-striped">
+  <tr>
+    <th class="span2"><%= t('主旨') %></th>
+    <th><%= t('預覽') %></th>
+    <th class="span2"><%= t('發送時間') %></th>
+  </tr>
+  <% @messages.each do |msg| %>
+  <tr>
+    <td class="span2"><%= msg.subject %></td>
+    <td><%= msg.content[0..100] + '...' %></td>
+    <td class="span2"><%= time_ago_in_words(msg.created_at) %></td>
+  </tr>
+  <% end %>
+</table>

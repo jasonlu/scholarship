@@ -1,4 +1,12 @@
 Scholarship::Application.routes.draw do
+  get "inbox", :to => 'inbox#index'
+
+  get "inbox/:id", :to => 'inbox#show'
+
+  put "inbox/read/:id", :to => 'inbox#read'
+
+  delete "inbox/delete/:id", :to => 'inbox#delete'
+
   devise_for :users, :controllers => { :registrations => "registrations" }
   constraints(:subdomain => /admin/) do
     mount Ckeditor::Engine => '/ckeditor'

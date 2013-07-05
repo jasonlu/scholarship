@@ -185,7 +185,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (>= 2.3.2.0)
+  bootstrap-sass (~> 2.3.2)
   capistrano
   ckeditor
   devise
@@ -197,7 +197,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails-i18n
   rails_admin (>= 0.4.8)
-  sass-rails (>= 3.2)
+  sass-rails (~> 3.2)
   seed_dump
   thin
   uglifier (>= 1.0.3)

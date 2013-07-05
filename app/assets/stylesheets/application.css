@@ -8,7 +8,6 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require bootstrap
  *= require_self
  */
 
@@ -36,4 +35,9 @@
 #new_user input[type="email"], #new_user input[type="password"]{
   width: 99%;
 
+}
+
+.label a {
+  color: inherit;
+  text-decoration: inherit;
 }

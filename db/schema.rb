@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703103908) do
+ActiveRecord::Schema.define(:version => 20130705093131) do
 
   create_table "carts", :force => true do |t|
     t.string   "user_id"
@@ -80,6 +80,22 @@ ActiveRecord::Schema.define(:version => 20130703103908) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "inboxes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "message_id"
+    t.boolean  "read"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "messages", :force => true do |t|
+    t.text     "content"
+    t.string   "subject"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "news", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -123,13 +139,15 @@ ActiveRecord::Schema.define(:version => 20130703103908) do
     t.integer  "course_id"
     t.integer  "progress_id"
     t.integer  "status"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.float    "score"
     t.date     "starts_at"
     t.date     "ends_at"
     t.integer  "passed"
     t.integer  "user_order_id"
+    t.string   "contract_number"
+    t.boolean  "activated",       :default => false
   end
 
   create_table "user_orders", :force => true do |t|

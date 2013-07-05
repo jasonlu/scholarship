@@ -14,14 +14,7 @@ set :default_stage, "staging"
 
 #load 'deploy/assets'
 namespace :deploy do
-  namespace :assets do
-    desc 'Run the precompile task locally and rsync with shared'
-    task :precompile, :roles => :web, :except => { :no_release => true } do
-      %x{bundle exec rake assets:precompile}
-      %x{rsync --recursive --times --rsh=ssh --compress --human-readable --progress public/assets #{user}@#{host}:#{shared_path}}
-      %x{bundle exec rake assets:clean}
-    end
-  end
+  
 end
 
 
@@ -47,12 +40,21 @@ namespace :deploy do
     run "cd #{current_path} && bundle exec thin start -d"
   end
 
-  
+  namespace :assets do
+    desc 'Run the precompile task locally and rsync with shared'
+    task :precompile, :roles => :web, :except => { :no_release => true } do
+#      %x{bundle exec rake assets:clean}
+#      %x{bundle exec rake assets:precompile}
+      %x{rsync --recursive --times --rsh=ssh --compress --human-readable --progress public/assets #{user}@#{web}:#{shared_path}}
+      %x{bundle exec rake assets:clean}
+    end
+  end
 
 end
 
+before "deploy:restart", "deploy:assets:precompile", "deploy:stop", "deploy:start"
 #before "deploy:restart", "bundle:install"
-after "deploy:stop", "deploy:start"
+
 
 
 

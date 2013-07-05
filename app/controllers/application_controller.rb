@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :load_config
   #before_filter :set_cookie
   #before_filter :set_layout
+  before_filter :check_new_messages
  
 
   def set_layout
@@ -55,6 +56,13 @@ class ApplicationController < ActionController::Base
     if cookies[:cart_id].blank?
       session_id = request.session_options[:id]
       cookies[:cart_id] = { :value => session_id, :expires => Time.now + (86400 * 3)}
+    end
+  end
+
+  def check_new_messages
+    @new_messages = 0
+    if user_signed_in?
+      @new_messages = current_user.inboxes.where(:read => 0).length
     end
   end
 
