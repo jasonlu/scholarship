@@ -3,10 +3,9 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   has_many :user_orders
-  has_many :newses
+  has_many :news
   has_one :user_profile
-  devise :database_authenticatable, :registerable,
-         :recoverable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :trackable, :validatable
   #:rememberable, 
 
   # Setup accessible (or protected) attributes for your model

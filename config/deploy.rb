@@ -24,6 +24,7 @@ namespace :deploy do
   end
 end
 
+
 namespace :bundle do
 
   desc "run bundle install and ensure all gem requirements are met"
@@ -32,7 +33,26 @@ namespace :bundle do
   end
 
 end
-before "deploy:restart", "bundle:install"
+
+# Generate an additional task to fire up the thin clusters
+namespace :deploy do
+
+  desc "Stop the Thin processes"
+  task :stop do
+    run "cd #{current_path} && bundle exec thin stop -d"
+  end
+
+  desc "Start the Thin processes"
+  task :start do
+    run "cd #{current_path} && bundle exec thin start -d"
+  end
+
+  
+
+end
+
+#before "deploy:restart", "bundle:install"
+after "deploy:stop", "deploy:start"
 
 
 

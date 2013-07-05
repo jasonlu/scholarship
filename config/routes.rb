@@ -1,10 +1,11 @@
 Scholarship::Application.routes.draw do
+  devise_for :users, :controllers => { :registrations => "registrations" }
   constraints(:subdomain => /admin/) do
     mount Ckeditor::Engine => '/ckeditor'
     mount RailsAdmin::Engine => '/', :as => 'rails_admin'
     
   end
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  
 
   #resources :news  
   get "news/:title", :to => 'news#show', :as => :news_item
