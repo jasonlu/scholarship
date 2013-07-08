@@ -1,9 +1,9 @@
 Scholarship::Application.routes.draw do
-  get "inbox", :to => 'inbox#index'
+  get "inbox", :to => 'inbox#index', :as => :inbox
 
-  get "inbox/:id", :to => 'inbox#show'
+  get "inbox/:inbox_id", :to => 'inbox#show', :as => :inbox_show
 
-  put "inbox/read/:id", :to => 'inbox#read'
+  put "inbox/read/:id", :to => 'inbox#read', :as => :inbox_read
 
   delete "inbox/delete/:id", :to => 'inbox#delete'
 

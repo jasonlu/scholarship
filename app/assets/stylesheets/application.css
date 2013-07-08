@@ -41,3 +41,7 @@
   color: inherit;
   text-decoration: inherit;
 }
+
+table tr.read td, table tr.read td a {
+  color: #ccc;
+}
