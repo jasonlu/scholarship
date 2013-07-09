@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+<%
+  theme = ENV['RAILS_ADMIN_THEME'] || :default
+%>
+
+/***  Variables  ***/
+
+@import "twitter/bootstrap/variables";
+@import "rails_admin/base/variables";
+@import "rails_admin/themes/<%= theme %>/variables";
+@import "rails_admin/custom/variables";
+
+/***  Mixins  ***/
+
+@import "twitter/bootstrap/mixins";
+@import "rails_admin/base/mixins";
+@import "rails_admin/themes/<%= theme %>/mixins";
+@import "rails_admin/custom/mixins";
+
+/*** Reset ***/
+@import "twitter/bootstrap/reset";
+/***  Libraries  ***/
+
+@import "rails_admin/aristo/jquery-ui-1.8.7.custom";
+@import "rails_admin/jquery.ui.timepicker";
+@import "rails_admin/ra.calendar-additions";
+@import "rails_admin/ra.filtering-multiselect";
+@import "rails_admin/ra.widgets";
+@import "rails_admin/jquery.colorpicker";
+
+/*** Font-awesome ***/
+
+@import 'font-awesome';
+
+/***  twitter/bootstrap Theming  ***/
+
+@import "twitter/bootstrap/scaffolding";
+@import "twitter/bootstrap/grid";
+@import "twitter/bootstrap/layouts";
+@import "twitter/bootstrap/type";
+@import "twitter/bootstrap/forms";
+@import "twitter/bootstrap/tables";
+@import "twitter/bootstrap/dropdowns";
+@import "twitter/bootstrap/wells";
+@import "twitter/bootstrap/component-animations";
+@import "twitter/bootstrap/close";
+@import "twitter/bootstrap/buttons";
+@import "twitter/bootstrap/button-groups";
+@import "twitter/bootstrap/alerts";
+@import "twitter/bootstrap/navs";
+@import "twitter/bootstrap/navbar";
+@import "twitter/bootstrap/breadcrumbs";
+@import "twitter/bootstrap/pagination";
+@import "twitter/bootstrap/pager";
+@import "twitter/bootstrap/modals";
+@import "twitter/bootstrap/tooltip";
+@import "twitter/bootstrap/popovers";
+@import "twitter/bootstrap/thumbnails";
+@import "twitter/bootstrap/labels-badges";
+@import "twitter/bootstrap/progress-bars";
+@import "twitter/bootstrap/accordion";
+@import "twitter/bootstrap/carousel";
+@import "twitter/bootstrap/hero-unit";
+@import "twitter/bootstrap/utilities";
+
+/***  RailsAdmin Theming  ***/
+
+@import "rails_admin/base/theming";
+@import "rails_admin/themes/<%= theme %>/theming";
+@import "rails_admin/custom/theming";
+
+
+
